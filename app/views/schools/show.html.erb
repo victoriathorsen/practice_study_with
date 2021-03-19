@@ -1,0 +1,14 @@
+<h1> <%= @school.name %> </h1>
+
+<%= render 'posts/form' %>
+<p>
+    <%= @school.posts.reverse.each do |p| %>
+        <h6> Posted at <%= p.created_at %></h6><br>
+        <h4> <%= p.title %> </h4><br>
+        <h5> <%= p.content %> </h5>
+    <% end %>
+</p>
+
+
+
+

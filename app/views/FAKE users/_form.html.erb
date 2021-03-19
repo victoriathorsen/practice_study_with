@@ -1,0 +1,15 @@
+
+<%= form_with model: user, url: '/signup' do |f| %>
+    Username: <%= f.text_field :username %><br>
+    
+    Email: <%= f.email_field :email %><br>
+
+    Password: <%= f.password_field :password %><br>
+
+    Current School: <%= f.text_field :current_school %><br><br>
+    
+    <%= f.submit "Create Account" %> 
+<% end %>
+<%= @errors %>
+
+

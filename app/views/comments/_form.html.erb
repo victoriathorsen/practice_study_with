@@ -1,0 +1,9 @@
+<% if logged_in? %>
+    <%= form_for ([@post, @post.comments.build]) do |p| %>
+        Comment: <%= p.text_area :content %><br>
+        
+        <%= p.submit "Submit Post" %> 
+    <% end %>
+<% else %>
+    <%= link_to "Sign In", login_path %> to create post.
+<% end %>

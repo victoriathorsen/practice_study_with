@@ -1,0 +1,10 @@
+<% if logged_in? %>
+    <%= form_with model: @post, url: [@school, @post], local: true do |f| %>
+        Post title: <%= f.text_field :title %><br>
+    
+        Post Description: <%= f.text_area :content %><br><br>
+        <%= f.submit "Submit Post" %>
+    <% end %>   
+<% else %>
+    <%= link_to "Log In", login_path %> to leave post
+<% end %>

@@ -1,0 +1,13 @@
+<% if logged_in? %>
+    <%= form_for ([@school, @school.posts.build]) do |p| %>
+        Post title: <%= p.text_field :title %><br>
+        Post Description: <%= p.text_area :content %><br>
+        
+        <%= p.submit "Submit Post" %> 
+    <% end %>
+<% else %>
+    <%= link_to "Sign In", login_path %> to create post.
+<% end %>
+    
+    
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>StudyWith</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+  <body>
+    <header> 
+      <br><br>
+      <%= link_to "Home", root_path %>  
+      <% if logged_in? %>
+          <%= link_to "Your Profile" %>
+          <%= link_to "Log Out", logout_path, method: 'delete' %>
+      <% else %>
+          <%= link_to "Sign Up", signup_path %>
+          <%= link_to "Log In", login_path %>
+      <% end %>
+    </header>
+
+    <%= yield %>
+
+    <footer>
+    </footer>
+  </body>
+</html>

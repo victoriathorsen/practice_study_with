@@ -1,0 +1,12 @@
+<h1> Find Someone to StudyWith at Your School </h1>
+<p>
+    Don't see your school on here: <%= link_to "Add Your School", new_school_path %>
+</p><br>
+
+<ol>
+    <% @schools.each do |school| %>
+        <ul>
+            <h2><%= link_to school.name, school_path(school) %></h2><br>
+        </ul>
+    <% end %>
+</ol>
