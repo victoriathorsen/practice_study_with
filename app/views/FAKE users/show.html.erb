@@ -1,8 +1,0 @@
-<h1> Welcome, <%= @user.username %> </h1>
-Student at: <%= link_to @user.school.name, @user.school if @user.school%> <br><br>
-
-<% if logged_in? && @user.id == current_user.id %>
-    <%= link_to "Log Out", logout_path, method: 'delete' %>
-    <%= link_to "Edit Profile", edit_user_path %>  
-<% end %>
-

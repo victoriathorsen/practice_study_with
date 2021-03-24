@@ -1,11 +1,11 @@
 <h1> Log In </h1>
-
-<%= flash[:message] if flash[:message] %>
-
+<br>
 <%= form_for :users do |f| %>
     Username: <%= f.text_field :username %><br>
 
     Password: <%= f.password_field :password %><br><br>
     
-    <%= f.submit "Log In" %> 
+    <%= f.submit "Log In" %><br><br>
+
+    <h3> Don't have an account, sign up <%= link_to "here", signup_path %>.
 <% end %>

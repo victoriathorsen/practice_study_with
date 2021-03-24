@@ -1,12 +1,11 @@
 class ApplicationController < ActionController::Base
 
-    # get "/" do
-    #     render 'layouts/application'
-    # end
+    helper_method :current_user, :logged_in?
 
-    helpers do 
+        private
+
         def current_user
-        User.find_by(id: session[:user_id])
+            @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
         end
 
         def logged_in?
@@ -26,5 +25,4 @@ class ApplicationController < ActionController::Base
         def attends_school
             School.find(params[:name])
         end
-    end
 end

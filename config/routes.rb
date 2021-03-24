@@ -7,11 +7,15 @@ Rails.application.routes.draw do
   #login route
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
+
   #logout route
   delete '/logout' => 'sessions#destroy'
 
-  resources :users, only: [:show, :edit]
-  
+  #omniauth call back
+  get '/auth/:provider/callback' => 'sessions#omniauth'
+
+  resources :users, only: [:show, :edit, :update]
+
   shallow do
     resources :schools, :shallow => true do
       resources :posts do
@@ -20,11 +24,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # resources :subjects do
-  #   resources :posts do
-  #     resources :comments
-  #   end
-  # end
-  
+ 
 
 end

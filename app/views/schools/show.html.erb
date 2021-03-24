@@ -1,11 +1,21 @@
 <h1> <%= @school.name %> </h1>
+<div>
+    <% if logged_in? && @school.name == current_user.current_school %>
+        <h3> There are <%= @school.users.count %> students you can StudyWith. </h3>
+        <%= link_to "Leave a Post", new_school_post_path(@school) %>
+    <% elsif logged_in? %>
+    <% else %>
+        <%= link_to "Sign In", login_path %> to leave a post. 
+    <% end %>
+</div>
 
-<%= render 'posts/form' %>
 <p>
-    <%= @school.posts.reverse.each do |p| %>
-        <h6> Posted at <%= p.created_at %></h6><br>
-        <h4> <%= p.title %> </h4><br>
-        <h5> <%= p.content %> </h5>
+    <% @school.posts.reverse.each do |post| %>
+        <ul>
+            <h2> <%= link_to post.title, post_path(post) %> </h2>
+            <h3> <%= post.content %> </h3>
+            <h5> Created by <%= link_to post.user.username, user_path(post.user) %> on <%= post.formated_created_at %></h5>
+        </ul>
     <% end %>
 </p>
 

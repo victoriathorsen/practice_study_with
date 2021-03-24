@@ -1,4 +1,16 @@
 <h1><%= @post.title %></h1>
-<h5>Created by: NAMEHERE at <%= @post.created_at %> </h5>
+<h5>Created by <%= link_to @post.user.username, user_path(@post.user) %> at <%= @post.formated_created_at %> </h5>
 <h3><%= @post.content %></h3> 
-<%= link_to 'Edit Post', edit_post_path %>
+<% if logged_in? && @post.user_id == current_user.id %>
+    <%= link_to 'Edit Post', edit_post_path %><br><br>
+<% end %>
+
+<%= render "comments/form" %>
+
+<% if @post.comments.count == 0 %> 
+    <h4> There are no comments </h4>
+<% else %>
+    <h4> <% @post.comments.count %> Comments </h4>
+    <%= render "comments/comments" %>
+<% end %>
+

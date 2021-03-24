@@ -1,0 +1,19 @@
+
+<%= form_for (@user), url: '/signup' do |f| %>
+    <%= f.label :username %>:
+    <%= f.text_field :username %><br><br>
+    <%= f.label :current_school %>:
+    <%= f.text_field :current_school %><br>
+        <br>
+    <%= f.label :email %>:
+    <%= f.email_field :email %><br><br>
+    <%= f.label :password %>
+    <%= f.password_field :password %><br>
+        <br>
+    <%= f.submit "Create Account" %><br>
+        <br>
+    <h3> Have an account, sign in <%= link_to "here", login_path %>. <h3>
+<% end %>
+<%= @errors %>
+
+

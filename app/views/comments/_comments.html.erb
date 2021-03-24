@@ -1,0 +1,10 @@
+<p> 
+    <% @post.comments.each do |c| %>
+        <ul>
+            <% if c.id != nil %>
+                <h6>  Left by <%= link_to c.user.username, user_path(c.user) %> on <%= c.formated_created_at %> </h6>
+                <h5> <%= c.content %> </h5>
+        </ul><br>
+            <% end %>
+    <% end %>
+</p>

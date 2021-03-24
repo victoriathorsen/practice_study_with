@@ -1,9 +1,11 @@
 <% if logged_in? %>
-    <%= form_for ([@post, @post.comments.build]) do |p| %>
-        Comment: <%= p.text_area :content %><br>
+    <%= form_for [@post, @comment, @post.comments.new] do |p| %>
+        <label>Leave a Comment:</label><br>
+        <%= p.text_area :content %><br><br>
         
-        <%= p.submit "Submit Post" %> 
+        <%= p.submit "Leave Comment" %> 
     <% end %>
 <% else %>
-    <%= link_to "Sign In", login_path %> to create post.
+    <%= link_to "Sign In", login_path %> to leave a comment.
 <% end %>
+

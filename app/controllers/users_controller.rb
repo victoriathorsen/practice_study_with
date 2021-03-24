@@ -1,4 +1,4 @@
-class FakeUsersController < ApplicationController
+class UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
 
     def show
@@ -16,9 +16,10 @@ class FakeUsersController < ApplicationController
         if @user.save
             #log them in
             session[:user_id] = @user.id
-            redirect_to user_path(@user)
+            flash[:message] = "Welcome #{@user.username}!"
+            redirect_to root_path
         else
-            @errors = @user.errors.full_messages
+            @error = @user.errors.full_messages
             render 'new'
         end
     end
@@ -29,7 +30,14 @@ class FakeUsersController < ApplicationController
     end
 
     def update
-        @user.update(user_params(:current_school))
+        if @user.update!(user_params(:username, :current_school))
+            @user.current.school 
+            flash[:message] = "Updated account."
+            redirect_to user_path(@user)
+        else
+            flash[:message] = "Could not update account."
+            render 'edit'
+        end
     end
 
     ######### DELETE ACCOUNT #############
@@ -41,8 +49,8 @@ class FakeUsersController < ApplicationController
 
     private
 
-    def user_params
-        params.require(:user).permit(:username, :email, :password, :current_school, :school_id)
+    def user_params(*args)
+        params.require(:user).permit(*args)
     end 
 
     def set_user

@@ -1,8 +1,10 @@
 
+<h3><%= button_to "Log In With Google", '/auth/google_oauth2' %> </h3>
+<h3><%= button_to('Log in with Facebook!', '/auth/facebook') %></h3>
 <br>
-<%= flash[:message] if flash[:message] %>
 <h1> Find someone to StudyWith </h1>
+
 <h3> Search by <%= link_to "School", schools_path %> </h3>
-<h3> Search by <%= link_to "Subject" %> </h3>
+
 
 

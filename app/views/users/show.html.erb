@@ -1,0 +1,40 @@
+ <div>   
+    <% if logged_in? && @user.id == current_user.id %>
+        <h1> Welcome, <%= @user.username %> </h1>
+        <% render= 'subjects/form' %>
+        <%= link_to "Edit Profile", edit_user_path %><br>
+        <br>
+        Student at: <%= link_to @user.school.name, @user.school if @user.school%> <br><br> 
+    <% else %>
+        <br>
+        <h1><%= @user.username %>'s Profile</h1> <br>
+        <h3> Student at: <%= link_to @user.school.name, @user.school if @user.school%> </h3>
+        <br>  
+    <% end %> 
+</div> 
+<div>
+    <% if logged_in? && @user.id == current_user.id %>
+        <h3> You have made <%= @user.posts.count %> posts </h3>
+    <% else %>
+        <h3> <%= @user.username %>'s Posts </h3>
+    <% end %>
+        <% @user.posts.each do |post| %>
+            <ul>
+                <strong><%= link_to post.title, post_path(post) %></strong><br><br>
+                <%= post.content %>
+            </ul>
+        <% end %>
+</div>
+<div>
+    <% if logged_in? && @user.id == current_user.id %>
+        <h3> You left comments on <%= @user.commented_posts.count %> posts </h3>
+        <% @user.commented_posts.each do |commented| %>
+            <ul>
+                <strong><%= link_to commented.title, post_path(commented) %></strong><br><br>
+                <%= commented.content %>
+            </ul>
+        <% end %>
+    <% end %>
+</div>
+
+

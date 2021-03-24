@@ -1,6 +1,10 @@
 <h1> Find Someone to StudyWith at Your School </h1>
-<p>
-    Don't see your school on here: <%= link_to "Add Your School", new_school_path %>
+<p> 
+    <h4>Search a School:</h4>
+    <%= form_tag schools_path, :method => 'get' do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag("Search", :name => nil) %>
+    <% end %><br>
 </p><br>
 
 <ol>
