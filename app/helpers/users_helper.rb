@@ -1,7 +1,11 @@
 module UsersHelper
 
-    def find_school
-        School.find_by(name: params[:name])
+    def count_commented_posts
+        if count == 1
+            "You left comments on #{@user.commented_posts.count} post"
+        else
+            "You left comments on #{@user.commented_posts.count} post".pluarlize
+        end
     end
 
 end

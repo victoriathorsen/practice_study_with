@@ -26,6 +26,7 @@ class SchoolsController < ApplicationController
 
 
     private
+    
 
     def set_school
         @school = School.find_by_id(params[:id])

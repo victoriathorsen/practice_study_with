@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
+    before_action :get_school, only: [:show, :edit, :update]
 
     def show
     end
@@ -11,8 +12,7 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         @school = find_school_or_create
-        @user.current_school == @school.name
-        @user.school_id = @school.id
+        verify_user_school
         if @user.save
             #log them in
             session[:user_id] = @user.id
@@ -30,12 +30,13 @@ class UsersController < ApplicationController
     end
 
     def update
-        if @user.update!(user_params(:username, :current_school))
-            @user.current.school 
+        if @user.update(user_params(:username, :current_school, :school_id)) && verify_user_school
+            # binding.pry
             flash[:message] = "Updated account."
             redirect_to user_path(@user)
         else
             flash[:message] = "Could not update account."
+            @error = @user.errors.full_messages
             render 'edit'
         end
     end
@@ -49,6 +50,16 @@ class UsersController < ApplicationController
 
     private
 
+    def get_school
+        @school = School.find_by(params[:name])
+    end
+
+    def verify_user_school
+        @school = find_school_or_create
+        @user.current_school = @school.name
+        @user.school_id = @school.id
+    end
+
     def user_params(*args)
         params.require(:user).permit(*args)
     end 
@@ -61,4 +72,6 @@ class UsersController < ApplicationController
     def find_school_or_create
         school = School.find_or_create_by(name: @user.current_school)
     end
+
+    
 end

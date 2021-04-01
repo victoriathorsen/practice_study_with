@@ -25,4 +25,8 @@ class ApplicationController < ActionController::Base
         def attends_school
             School.find(params[:name])
         end
+
+        def public_post
+            @post = Post.find_by(public: "true")
+        end
 end

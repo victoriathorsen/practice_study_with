@@ -1,3 +1,21 @@
+<h2> <%= @subject.name %> </h2><br>
 
+<div>
+    <% if !logged_in?%>
+        <%= link_to "Sign In", login_path %> to leave a post. 
+    <% else %>
+        <%= link_to "Leave a Post", new_school_post_path(current_user.school_id) %>
+    <% end %>
+</div>
 
-<%= render partial: 'schools/leave_post', locals; { :@ } %>
+<p>
+    <% @subject.posts.reverse.each do |post| %>
+        <% if post.public == true %>
+            <ul>
+                <br><h4> <%= link_to post.title, post_path(post) %> </h4>
+                <h5> <%= post.content %> </h5>
+                <h6> Created by <%= link_to post.user.username, user_path(post.user) %> on <%= post.formated_created_at %></h6>
+            </ul>
+        <% end %>
+    <% end %>
+</p>

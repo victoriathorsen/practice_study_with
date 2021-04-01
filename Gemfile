@@ -28,6 +28,8 @@ gem 'dotenv-rails'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
+gem 'bootstrap'
+gem 'jquery-rails'
 # gem 'devise'
 # gem 'pg_search'
 

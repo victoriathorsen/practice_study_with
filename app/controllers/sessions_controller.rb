@@ -26,6 +26,7 @@ class SessionsController < ApplicationController
             @user.username = auth["info"]["name"]
             @user.email = auth["info"]["email"]
             @user.password = SecureRandom.hex(8)
+            binding.pry
         if @user.save
             session[:user_id] = @user.id
             flash[:message] = "Welcome #{@user.username}!"

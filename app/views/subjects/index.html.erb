@@ -1,0 +1,16 @@
+<h1> Find Someone to StudyWith by Subject </h1>
+<p> 
+    <h4>Search a Subject:</h4>
+    <%= form_tag subjects_path, :method => 'get' do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag("Search", :name => nil) %>
+    <% end %><br>
+</p><br>
+
+<ol>
+    <% @subjects.each do |subject| %>
+        <ul>
+            <h2><%= link_to subject.name, subject_path(subject) %></h2><br>
+        </ul>
+    <% end %>
+</ol>

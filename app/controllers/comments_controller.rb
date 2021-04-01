@@ -21,15 +21,6 @@ class CommentsController < ApplicationController
         end
     end
 
-    def show
-        binding.pry
-        @comments = @post.comments.all
-    end
-
-    def index
-        @comments = Comment.all
-    end
-
     def destroy
         @post.comment.destroy
 
@@ -47,7 +38,7 @@ class CommentsController < ApplicationController
     end
 
     def set_comment
-        @comment = @post.comments.find_by(id: params[:id])
+        @comment = @post.comments.find_by_id(params[:id])
         redirect_to '/' if !@comment
     end
 

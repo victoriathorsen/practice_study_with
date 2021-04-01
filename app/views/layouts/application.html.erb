@@ -14,6 +14,7 @@
       <br><br>
       <%= link_to "Home", root_path %> |
       <%= link_to "Schools", schools_path %> |
+      <%= link_to "Subjects", subjects_path %> |
       <% if logged_in? %>
           <%= link_to "Profile", user_path(current_user) %> |
           <%= link_to "Log Out", logout_path, method: 'delete' %> 
@@ -25,14 +26,9 @@
     <br>
     <br>
     <div>
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
+      <%= @error if @error %><br>
       <%= flash[:message] if flash[:message] %>
-    </div>
+    </div><br>
 
     <%= yield %>
 

@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
     belongs_to :school
+    belongs_to :subject, optional: true
     belongs_to :user
     has_many :comments, dependent: :destroy
     has_many :users, through: :comments

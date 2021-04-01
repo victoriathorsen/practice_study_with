@@ -1,2 +1,15 @@
 <h1>Edit Post</h1>
-<%= render partial: "form", locals: {post: @post} %>
+<% if logged_in? %>
+    <%= form_for (@post) do |p| %>
+        Post Title: <%= p.text_field :title %><br>
+        Post Description: <%= p.text_area :content %><br><br>
+        Subject: <%= p.collection_select :subject_id, Subject.order(:name), :id, :name, :include_blank => true %><br><br>
+        Post to Subject's Open Forum? Yes: <%= p.check_box :public %> <br><br>
+        
+        
+        <%= p.submit "Edit Post" %> 
+    <% end %>
+<% else %>
+    <%= link_to "Sign In", login_path %> to leave post .
+<% end %>
+    

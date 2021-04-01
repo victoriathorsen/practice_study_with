@@ -1,16 +1,21 @@
-<h1><%= @post.title %></h1>
-<h5>Created by <%= link_to @post.user.username, user_path(@post.user) %> at <%= @post.formated_created_at %> </h5>
-<h3><%= @post.content %></h3> 
-<% if logged_in? && @post.user_id == current_user.id %>
-    <%= link_to 'Edit Post', edit_post_path %><br><br>
+
+<h1><%= @post.title %> 
+    <% if @post.subject != nil %>
+        - <%= link_to @post.subject.name, subject_path(@post.subject) %></h1>
+    <% end %>
+<h3><%= @post.content %></h3>
+<h6>Created by <%= link_to @post.user.username, user_path(@post.user) %> at <%= @post.formated_created_at %> </h6>
+<% if logged_in? && @post.user_id == current_user.id %><br>
+    <%= link_to 'Edit Post', edit_post_path %> |
+    <%= link_to 'Delete Post', post_path, method: 'delete' %><br><br>
 <% end %>
 
-<%= render "comments/form" %>
+<%= render "comments/form" %><br>
 
 <% if @post.comments.count == 0 %> 
-    <h4> There are no comments </h4>
+    <br><h5> There are no comments </h5>
 <% else %>
-    <h4> <% @post.comments.count %> Comments </h4>
+    <br><h5> <% @post.comments.count %> Comments </h4>
     <%= render "comments/comments" %>
 <% end %>
 

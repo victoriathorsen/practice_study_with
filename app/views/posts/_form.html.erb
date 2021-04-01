@@ -1,7 +1,9 @@
 <% if logged_in? %>
     <%= form_for [@school, @post], url: school_posts_path(@school) do |p| %>
-        Post Title: <%= p.text_field :title %><br>
-        Post Description: <%= p.text_area :content %><br><br>
+        Title: <%= p.text_field :title %><br>
+        Description: <%= p.text_area :content %><br><br>
+        Subject: <%= p.collection_select :subject_id, Subject.order(:name), :id, :name, :include_blank => true %><br><br>
+        Post to Subject's Open Forum? Yes: <%= p.check_box :public %> <br><br>
     
         
         

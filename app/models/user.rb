@@ -7,10 +7,11 @@ class User < ApplicationRecord
 
     belongs_to :school, optional: true
     has_many :posts, dependent: :destroy
+    has_many :subjects, through: :posts
     has_many :comments, dependent: :destroy
     has_many :commented_posts, through: :comments, source: :post
 
-    # has_many :subjects through: :posts
+    
 
     def self.from_omniauth(auth)
         where(email: auth.info.email).first_or_initialize do |user|

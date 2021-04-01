@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#omniauth'
 
   resources :users, only: [:show, :edit, :update]
+  resources :subjects, only: [:show, :index]
 
   shallow do
     resources :schools, :shallow => true do
