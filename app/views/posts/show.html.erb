@@ -3,7 +3,7 @@
     <% if @post.subject != nil %>
         - <%= link_to @post.subject.name, subject_path(@post.subject) %></h1>
     <% end %>
-<h3><%= @post.content %></h3>
+<h3><%= @post.content %></h3><br>
 <h6>Created by <%= link_to @post.user.username, user_path(@post.user) %> at <%= @post.formated_created_at %> </h6>
 <% if logged_in? && @post.user_id == current_user.id %><br>
     <%= link_to 'Edit Post', edit_post_path %> |
