@@ -1,9 +1,10 @@
 class CommentsController < ApplicationController
     before_action :get_post
-    before_action :get_user, only: [:show]
+    before_action :get_user
     before_action :set_comment, only: [:show, :destroy]
 
     def new
+        binding.pry
         @comment = @post.comments.new
     end
 
@@ -30,7 +31,7 @@ class CommentsController < ApplicationController
     private
 
     def get_post
-        @post = Post.find(params[:post_id])
+        @post = Post.find_by_id(params[:post_id])
     end
 
     def get_user
@@ -47,7 +48,7 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-        params.require(:comment).permit(:content)
+        params.require(:comment).permit(:content, :user_id)
     end 
 
 end

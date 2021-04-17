@@ -14,7 +14,6 @@ ActiveStorage.start()
 
 import "controllers"
 
-import "bootstrap"
 
 //= require jquery3
 //= require popper

@@ -1,11 +1,15 @@
-<h1> Log In </h1>
-<br>
-<%= form_for :users do |f| %>
-    Username: <%= f.text_field :username %><br>
+<div class= "main_body"> 
+    <div class= "container text-center my-auto">
+        <h1> Log In </h1>
+        <br>
+        <%= form_for :users do |f| %>
+            Username: <%= f.text_field :username %><br>
 
-    Password: <%= f.password_field :password %><br><br>
-    
-    <%= f.submit "Log In" %><br><br>
+            Password: <%= f.password_field :password %><br><br>
+            
+            <%= f.submit "Log In" %><br><br>
 
-    <h3> Don't have an account, sign up <%= link_to "here", signup_path %>.
-<% end %>
+            <h3> Don't have an account, sign up <%= link_to "here", signup_path %>.
+        <% end %>
+    </div>
+</div>

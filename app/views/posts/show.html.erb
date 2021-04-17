@@ -1,21 +1,25 @@
-
-<h1><%= @post.title %> 
-    <% if @post.subject != nil %>
-        - <%= link_to @post.subject.name, subject_path(@post.subject) %></h1>
-    <% end %>
-<h3><%= @post.content %></h3><br>
-<h6>Created by <%= link_to @post.user.username, user_path(@post.user) %> at <%= @post.formated_created_at %> </h6>
-<% if logged_in? && @post.user_id == current_user.id %><br>
-    <%= link_to 'Edit Post', edit_post_path %> |
-    <%= link_to 'Delete Post', post_path, method: 'delete' %><br><br>
-<% end %>
-
-<%= render "comments/form" %><br>
-
-<% if @post.comments.count == 0 %> 
-    <br><h5> There are no comments </h5>
-<% else %>
-    <br><h5> <% @post.comments.count %> Comments </h4>
-    <%= render "comments/comments" %>
-<% end %>
+<section class= "main_large_body">
+    <div class= "large_container">
+        <h1><%= @post.title %> 
+            <% if @post.subject != nil %>
+                - <%= link_to @post.subject.name, subject_path(@post.subject) %></h1>
+            <% end %>
+        <h3><%= @post.content %></h3>
+        <h6>Created by <%= link_to @post.user.username, user_path(@post.user) %> at <%= @post.formated_created_at %> </h6>
+        <% if logged_in? && @post.user_id == current_user.id %><br>
+            <%= link_to 'Edit Post', edit_post_path %> |
+            <%= link_to 'Delete Post', post_path, method: 'delete' %>
+        <% end %>
+    </div>
+    <div class= "large_container"
+        <%= render "comments/form" %>
+            <br>
+        <% if @post.comments.count == 0 %> 
+            <br><h5> There are no comments </h5>
+        <% else %>
+            <br><h5> <% @post.comments.count %> Comments </h4>
+            <%= render "comments/comments" %>
+        <% end %>
+    </div>
+</section>
 

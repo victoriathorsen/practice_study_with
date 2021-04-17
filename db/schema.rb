@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_194527) do
+ActiveRecord::Schema.define(version: 2021_04_16_214218) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_194527) do
     t.integer "subject_id"
     t.integer "user_id"
     t.boolean "public"
+    t.integer "post_id"
   end
 
   create_table "schools", force: :cascade do |t|

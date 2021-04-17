@@ -22,11 +22,10 @@ class SessionsController < ApplicationController
     end
 
     def omniauth
-        @user = User.find_or_create_by(provider: auth['provider'], uid: auth['uid'])
+        @user = User.find_or_create_by(provider: auth['provider'])
             @user.username = auth["info"]["name"]
             @user.email = auth["info"]["email"]
             @user.password = SecureRandom.hex(8)
-            binding.pry
         if @user.save
             session[:user_id] = @user.id
             flash[:message] = "Welcome #{@user.username}!"

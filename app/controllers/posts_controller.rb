@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     end
 
     def show
-        
+       @comment = @post.comments.new
     end
 
     def new
@@ -21,13 +21,14 @@ class PostsController < ApplicationController
         @post = @school.posts.new(post_params)
         @post.user_id = current_user.id
         @post.school_id = @school.id
-        
+        @post.id = @post.post_id
         if @post.save
             current_user.subject_id = @post.subject_id
             flash[:message] = "Added your post."
             redirect_to post_path(@post)
         else
             flash[:message] = "Your post could not be added."
+            @errors = @post.errors.full_message
             render 'new'
         end
     end
@@ -38,6 +39,10 @@ class PostsController < ApplicationController
     def update
         if @post.update(post_params)
             redirect_to post_path(@post)
+        else
+            flash[:message] = "Could not edit post."
+            @errors = @post.errors.full_message
+            render 'edit'
         end
     end
 
@@ -69,7 +74,7 @@ class PostsController < ApplicationController
     end
 
     def post_params
-        params.require(:post).permit(:title, :content, :subject_id, :public, :user_id)
+        params.require(:post).permit(:title, :content, :subject_id, :public, :user_id, :post_id)
     end 
 
 

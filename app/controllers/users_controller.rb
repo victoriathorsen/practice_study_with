@@ -13,13 +13,14 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         @school = find_school_or_create
         verify_user_school
+        # binding.pry
         if @user.save
             #log them in
             session[:user_id] = @user.id
             flash[:message] = "Welcome #{@user.username}!"
             redirect_to root_path
         else
-            @error = @user.errors.full_messages
+            @errors = @user.errors.full_messages
             render 'new'
         end
     end
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
             redirect_to user_path(@user)
         else
             flash[:message] = "Could not update account."
-            @error = @user.errors.full_messages
+            @errors = @user.errors.full_messages
             render 'edit'
         end
     end
@@ -61,7 +62,7 @@ class UsersController < ApplicationController
     end
 
     def user_params(*args)
-        params.require(:user).permit(*args)
+        params.require(:user).permit(:username, :current_school, :email, :password, :school_id)
     end 
 
     def set_user

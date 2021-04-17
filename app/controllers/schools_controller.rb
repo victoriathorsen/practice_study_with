@@ -19,7 +19,7 @@ class SchoolsController < ApplicationController
         if @school.save
             redirect_to schools_path(@school)
         else
-            @error = school.errors.full_message
+            @errors = @school.errors.full_message
             render 'new'
         end
     end

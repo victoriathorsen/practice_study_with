@@ -1,21 +1,22 @@
-<h2> <%= @subject.name %> </h2><br>
+<section class= "main_large_body"> 
+    <div class= "large_container">
+        <h2> <%= @subject.name %> </h2>
 
-<div>
-    <% if !logged_in?%>
-        <%= link_to "Sign In", login_path %> to leave a post. 
-    <% else %>
-        <%= link_to "Leave a Post", new_school_post_path(current_user.school_id) %>
-    <% end %>
-</div>
-
-<p>
-    <% @subject.posts.reverse.each do |post| %>
-        <% if post.public == true %>
-            <ul>
-                <br><h4> <%= link_to post.title, post_path(post) %> </h4>
-                <h5> <%= post.content %> </h5>
-                <h6> Created by <%= link_to post.user.username, user_path(post.user) %> on <%= post.formated_created_at %></h6>
-            </ul>
+        <div>
+            <% if !logged_in?%>
+                <%= link_to "Sign In", login_path %> to leave a post. 
+            <% else %>
+                <%= link_to "Leave a Post", new_school_post_path(current_user.school_id) %>
+            <% end %>
+        </div><br>
+        <% @subject.posts.reverse.each do |post| %>
+            <% if post.public == true %>
+                <div class= "posts_container">
+                    <br><h4> <%= link_to post.title, post_path(post) %> </h4>
+                    <h5> <%= post.content %> </h5>
+                    <h6> Created by <%= link_to post.user.username, user_path(post.user) %> on <%= post.formated_created_at %></h6>
+                </div>
+            <% end %>
         <% end %>
-    <% end %>
-</p>
+    </div>
+</section>

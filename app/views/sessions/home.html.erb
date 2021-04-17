@@ -1,12 +1,17 @@
-<% if !logged_in? %>
-    <h3><%= button_to "Log In With Google", '/auth/google_oauth2' %> </h3>
-    <h3><%= button_to('Log in with Facebook!', '/auth/facebook') %></h3>
-<% end %>
-<br>
-<h1> Find someone to StudyWith </h1>
-
-<h3> Search for your <%= link_to "School", schools_path %> </h3>
-<h3> Search <%= link_to "Subjects", subjects_path %> Open Forum </h3>
+<div class= "main_body">
+    <div class= "container text-center my-auto">
+        <h1> Find someone to StudyWith </h1>
+        <h3> Search for your <%= link_to "School", schools_path %> </h3>
+        <h3> Search <%= link_to "Subjects", subjects_path %> Open Forum </h3><br>
+    
+        <div class= "omniauth_login">
+            <% if !logged_in? %>
+                <h3><%= button_to "Log In With Google", '/auth/google_oauth2' %> </h3>
+                <h3><%= button_to('Log in with Facebook!', '/auth/facebook') %></h3>
+            <% end %>
+        </div>
+    </div>
+</div>
 
 
 

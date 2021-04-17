@@ -1,40 +1,40 @@
- <div>   
-    <% if logged_in? && @user.id == current_user.id %>
-        <h2> Welcome, <%= @user.username %> </h2>
-        <% render= 'subjects/form' %>
-        <%= link_to "Edit Profile", edit_user_path %><br>
-        <br>
-        Student at: <%= link_to @user.school.name, @user.school if @user.school%> <br><br> 
-    <% else %>
-        <br>
-        <h2><%= @user.username %>'s Profile</h2> <br>
-        <h4> Student at: <%= link_to @user.school.name, @user.school if @user.school%> </h4>
-        <br>  
-    <% end %> 
-</div> 
-<div>
-    <% if logged_in? && @user.id == current_user.id %>
-        <h4> You have made <%= @user.posts.count %> posts </h4><br>
-    <% else %>
-        <h4> <%= @user.username %>'s Posts </h4>
-    <% end %>
-        <% @user.posts.each do |post| %>
-            <ul>
-                <strong><%= link_to post.title, post_path(post) %></strong><br>
-                <%= post.content %>
-            </ul>
-        <% end %>
-</div>
-<div>
-    <% if logged_in? && @user.id == current_user.id %>
-        <h4> You left comments on <%= @user.commented_posts.count %> posts </h4><br>
-        <% @user.commented_posts.each do |commented| %>
-            <ul>
-                <strong><%= link_to commented.title, post_path(commented) %></strong><br>
-                <%= commented.content %>
-            </ul>
-        <% end %>
-    <% end %>
-</div>
+<section class= "main_large_body"> 
+    <div class= "large_container">
+        <div class= "text_body">   
+            <% if logged_in? && @user.id == current_user.id %>
+                <h2> Welcome, <%= @user.username %> </h2>
+                <h4>Student at: <%= link_to @user.school.name, @user.school if @user.school%> </h4>
+                <%= link_to "Edit Profile", edit_user_path %><br>
+            <% else %>
+                <br>
+                <h2><%= @user.username %>'s Profile</h2>
+                <h4> Student at: <%= link_to @user.school.name, @user.school if @user.school%> </h4> 
+            <% end %> 
+     
+            <% if logged_in? && @user.id == current_user.id %>
+                <br><h4> You have made <%= @user.posts.count %> posts </h4>
+            <% else %>
+                <br><h3> <%= @user.username %>'s Posts </h3>
+            <% end %>
+                <% @user.posts.each do |post| %>
+                    <div class= "posts_container">
+                        <h4><%= link_to post.title, post_path(post) %></h4>
+                        <h5><%= post.content %></h5>
+                    </div>
+                <% end %>
+            <br>
+            <% if logged_in? && @user.id == current_user.id %>
+                <h4> You left comments on <%= @user.commented_posts.count %> posts </h4>
+                <% @user.commented_posts.each do |commented| %>
+                    <div class= "posts_container">
+                        <h4><%= link_to commented.title, post_path(commented) %></h4>
+                        <h5><%= commented.content %></h5>
+                        <h6>Left by <%= link_to commented.user.username, user_path(commented.user) %> on <%= commented.formated_created_at %> </h6>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</section>
 
 

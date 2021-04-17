@@ -6,8 +6,11 @@
       /* Email styles need to be inline */
     </style>
   </head>
-
   <body>
+
+    <%= render "layouts/header" %>
     <%= yield %>
+    <%= render "layouts/footer" %>
+
   </body>
 </html>

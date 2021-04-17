@@ -1,16 +1,18 @@
-<h1>Edit Account</h1><br>
+<div class= "main_body">    
+    <h1>Edit Account</h1><br>
 
-<% if @user.current_school = nil %>
-    <%= form_for (@user) do |f| %>
-        Username: <%= f.text_field :username %><br><br>
-        School: <%= f.text_field :current_school %><br><br>
-        <%= f.submit "Update Account" %><br><br>
+    <% if @user.school_id == nil %>
+        <%= form_for (@user) do |f| %>
+            Username: <%= f.text_field :username %><br><br>
+            School: <%= f.text_field :current_school %><br><br>
+            <%= f.submit "Update Account" %><br><br>
 
+        <% end %>
+    <% else %>
+        <%= form_for (@user) do |f| %>
+            Username: <%= f.text_field :username %><br><br>
+            <%= f.submit "Update Account" %><br><br>
+
+        <% end %>
     <% end %>
-<% else %>
-    <%= form_for (@user) do |f| %>
-        Username: <%= f.text_field :username %><br><br>
-        <%= f.submit "Update Account" %><br><br>
-
-    <% end %>
-<% end %>
+<div>

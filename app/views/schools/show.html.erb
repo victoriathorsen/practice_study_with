@@ -1,26 +1,31 @@
-<h2> <%= @school.name %> </h2><br>
-<div>
-    <% if logged_in? && @school.name == current_user.current_school %>
-        <h5> There are <%= @school.users.count %> students you can StudyWith. </h5>
-        <%= link_to "Leave a Post", new_school_post_path(@school) %>
-    <% elsif logged_in? %>
-    <% else %>
-        <%= link_to "Sign In", login_path %> to leave a post. 
-    <% end %>
-</div>
-
-<p>
-    <% @school.posts.reverse.each do |post| %>
-        <ul>
-            <br><h4> <%= link_to post.title, post_path(post) %>
-            <% if post.subject_id != nil %>
-                - <%= link_to post.subject.name, subject_path(post.subject) %></h4>
+<section class= "main_large_body"> 
+    <div class= "large_container">
+        <h2> <%= @school.name %> </h2><br>
+        <div>
+            <% if logged_in? && @school.name == current_user.current_school %>
+                <h5> There are <%= @school.users.count %> students you can StudyWith. </h5>
+                <%= link_to "Leave a Post", new_school_post_path(@school) %>
+            <% elsif logged_in? %>
+            <% else %>
+                <%= link_to "Sign In", login_path %> to leave a post. 
             <% end %>
-            <h5> <%= post.content %> </h5>
-            <h6> Created by <%= link_to post.user.username, user_path(post.user) %> on <%= post.formated_created_at %></h6>
-        </ul>
-    <% end %>
-</p>
+        </div>
+
+        <p>
+            <% @school.posts.reverse.each do |post| %>
+                <div class= "posts_container">
+                    <br><h4> <%= link_to post.title, post_path(post) %>
+                    <% if post.subject_id != nil %>
+                        - <%= link_to post.subject.name, subject_path(post.subject) %></h4>
+                    <% end %>
+                    <%= post.comments.count %>
+                    <h5> <%= post.content %> </h5>
+                    <h6> Created by <%= link_to post.user.username, user_path(post.user) %> on <%= post.formated_created_at %></h6>
+                </div>
+            <% end %>
+        </p>
+    </div>
+</section>
 
 
 
